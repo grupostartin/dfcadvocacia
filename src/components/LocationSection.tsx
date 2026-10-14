@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { OFFICE_DATA } from '../data/content';
 import { ScheduleModal } from './ScheduleModal';
-import { ArrowUpRight, MapPin, Navigation, Compass } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Reveal, SectionKicker } from './Reveal';
 
 export const LocationSection: React.FC = () => {
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
-  const [showLiveMap, setShowLiveMap] = useState(false);
 
   return (
     <section id="localizacao" className="bg-white text-[#0A0A0A] py-20 lg:py-28 relative">
@@ -79,52 +78,20 @@ export const LocationSection: React.FC = () => {
                   <span className="text-neutral-400">{OFFICE_DATA.coordinates.degrees}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setShowLiveMap(!showLiveMap)}
-                    className="text-[10px] underline underline-offset-4 text-neutral-400 hover:text-white transition-colors"
-                  >
-                    {showLiveMap ? 'Modo Radar' : 'Mapa Interativo'}
-                  </button>
                   <span className="text-neutral-400 uppercase hidden sm:inline">MINAS GERAIS, BR</span>
                 </div>
               </div>
 
-              {/* Center Content: Either Live Map Embed or Architectural Radar Graphic */}
-              {showLiveMap ? (
-                <div className="my-6 rounded-xl overflow-hidden border border-neutral-800 h-[280px] relative z-10">
-                  <iframe
-                    title="Localização DFC Advocacia Belo Horizonte"
-                    src="https://maps.google.com/maps?q=Rua+Joana+Ang%C3%A9lica,+115,+Minasl%C3%A2ndia,+Belo+Horizonte+-+MG&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                    className="w-full h-full border-0 filter grayscale invert contrast-125"
-                    loading="lazy"
-                  />
-                </div>
-              ) : (
-                <div className="relative my-8 py-12 flex flex-col items-center justify-center text-center overflow-hidden">
-                  {/* Dot matrix background */}
-                  <div className="absolute inset-0 bg-dot-matrix opacity-40 pointer-events-none" />
-
-                  {/* Concentric subtle radar circles */}
-                  <div className="absolute w-72 h-72 rounded-full border border-neutral-800/80 pointer-events-none" />
-                  <div className="absolute w-48 h-48 rounded-full border border-neutral-800/60 pointer-events-none" />
-                  <div className="absolute w-24 h-24 rounded-full border border-neutral-800/40 pointer-events-none" />
-
-                  {/* Pulsing ring */}
-                  <div className="absolute w-20 h-20 rounded-full border border-white/20 animate-ping opacity-25 pointer-events-none" />
-
-                  {/* Center Monogram Seal Badge */}
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-white text-[#0A0A0A] flex items-center justify-center font-display font-extrabold text-sm tracking-wider shadow-2xl mb-4">
-                    DFC
-                  </div>
-
-                  <p className="relative z-10 text-xs sm:text-sm font-medium tracking-wider text-neutral-300 uppercase font-mono">
-                    Minaslândia • Belo Horizonte • MG
-                  </p>
-                  <span className="relative z-10 text-[11px] text-neutral-500 font-mono mt-1">
-                    Atendimento presencial reservado
-                  </span>
-                </div>
-              )}
+              {/* Google Maps embed */}
+              <div className="my-6 rounded-xl overflow-hidden border border-neutral-800 h-[280px] relative z-10">
+                <iframe
+                  title="Localização DFC Advocacia Belo Horizonte"
+                  src="https://maps.google.com/maps?q=Rua+Joana+Ang%C3%A9lica,+115,+Minasl%C3%A2ndia,+Belo+Horizonte+-+MG&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
 
               {/* Card Footer Bar */}
               <div className="flex items-center justify-between text-xs text-neutral-400 pt-4 border-t border-neutral-800/80 font-mono z-10 relative">
