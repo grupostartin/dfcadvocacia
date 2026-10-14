@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #0A0A0A;
+    color: #F7F7F7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom architectural grid and editorial rules */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Subtle architectural grid pattern */
+.bg-grid-editorial {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: calc(100% / 6) 100%;
+}
+
+@media (min-width: 1024px) {
+  .bg-grid-editorial {
+    background-size: calc(100% / 12) 100%;
+  }
+}
+
+.bg-dot-matrix {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* ─────────────────────────────────────────────
+   Hero — motion & atmosphere
+   ───────────────────────────────────────────── */
+.hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  will-change: transform;
+}
+
+.hero-orb-a {
+  width: 620px;
+  height: 620px;
+  top: -18%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.13), transparent 65%);
+  animation: hero-drift-a 22s ease-in-out infinite alternate;
+}
+
+.hero-orb-b {
+  width: 560px;
+  height: 560px;
+  top: 25%;
+  right: -12%;
+  background: radial-gradient(circle, rgba(212, 184, 140, 0.16), transparent 65%);
+  animation: hero-drift-b 26s ease-in-out infinite alternate;
+}
+
+.hero-orb-c {
+  width: 460px;
+  height: 460px;
+  bottom: -20%;
+  left: 30%;
+  background: radial-gradient(circle, rgba(140, 160, 200, 0.1), transparent 65%);
+  animation: hero-drift-c 30s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift-a {
+  to { transform: translate(18vw, 12vh) scale(1.15); }
+}
+@keyframes hero-drift-b {
+  to { transform: translate(-22vw, -8vh) scale(0.9); }
+}
+@keyframes hero-drift-c {
+  to { transform: translate(-14vw, -18vh) scale(1.2); }
+}
+
+/* Silver ↔ champagne shimmer on the second headline line */
+.hero-shimmer-text {
+  background: linear-gradient(
+    100deg,
+    #737373 0%,
+    #a3a3a3 30%,
+    #f5e6c8 45%,
+    #ffffff 50%,
+    #d9c29a 55%,
+    #a3a3a3 70%,
+    #737373 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-shimmer 7s ease-in-out infinite;
+}
+
+@keyframes hero-shimmer {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0% 0; }
+}
+
+.hero-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);
+}
+
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Light sweep across the primary CTA on hover */
+.hero-shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-shine:hover::before {
+  transform: translateX(120%) skewX(-20deg);
+}
+
+.hero-marquee {
+  animation: hero-marquee 40s linear infinite;
+}
+.hero-marquee-mask:hover .hero-marquee {
+  animation-play-state: paused;
+}
+.hero-marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+@keyframes hero-marquee {
+  to { transform: translateX(-50%); }
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "DFC Advocacia | Belo Horizonte - MG",
+  "description": "Landing page institucional da DFC Advocacia em Belo Horizonte, Minas Gerais. Atendimento presencial e online, áreas de atuação e contato direto via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
